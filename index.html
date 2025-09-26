@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ダッシュボード</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard-container">
+
+        <div class="row top-row">
+
+            <div class="widget time-widget">
+                <p class="date">----/--/--</p>
+                <p class="day">-------</p>
+                <h1 class="time">--:--</h1>
+            </div>
+
+            <div class="widget image-widget">
+                <img src="./img/your-sunflower-image.png" alt="ひまわりの画像">
+                <img src="./img/your-desk-image.png" alt="デスクの画像">
+            </div>
+
+        </div>
+
+        <div class="row bottom-row">
+
+            <div class="widget weather-widget">
+                <p class="location">静岡県浜松市</p>
+                <p class="temp">27℃</p>
+                <p class="precipitation">降水確率 40%</p>
+            </div>
+
+            <div class="widget bank-widget">
+                <p class="bank-name">住信SBI銀行</p>
+                <p class="balance">¥ 50,000</p>
+                <p class="timestamp">2025/01/01 時点</p>
+            </div>
+
+            <div class="widget speed-widget">
+                <div class="gauge-icon">
+                    <img src="./icon/your-gauge-icon.png" alt="速度メーターのアイコン">
+                </div>
+                <div class="speed-value">74</div>
+                <div class="speed-unit">
+                    <span>Mbps</span>
+                    <img src="./icon/your-status-icon.png" alt="ステータスアイコン" class="status-icon">
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+        // HTMLの要素をあらかじめ取得しておく
+        const dateElement = document.querySelector('.time-widget .date');
+        const dayElement = document.querySelector('.time-widget .day');
+        const timeElement = document.querySelector('.time-widget .time');
+
+        /**
+         * 日時を更新する関数
+         */
+        function updateDateTime() {
+            const now = new Date();
+
+            // 年月日のフォーマット (YYYY-MM-DD)
+            const year = now.getFullYear();
+            // getMonth()は0から始まるため+1する。padStartで2桁表示にする
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const date = String(now.getDate()).padStart(2, '0');
+
+            // 曜日のフォーマット
+            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+            const day = days[now.getDay()];
+
+            // 時刻のフォーマット (HH:MM)
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+
+            // 取得した日時を画面に表示
+            dateElement.textContent = `${year}-${month}-${date}`;
+            dayElement.textContent = day;
+            timeElement.textContent = `${hours}:${minutes}`;
+        }
+
+        // 最初に一度関数を呼び出して日時を表示
+        updateDateTime();
+
+        // その後、1秒ごとに関数を呼び出して日時を更新し続ける
+        setInterval(updateDateTime, 1000);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,233 @@
+/* --- 全体のスタイル --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #1e3a5f;
+    /* 全体の背景色 */
+    margin: 0;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- ダッシュボードのコンテナ --- */
+.dashboard-container {
+    width: 100%;
+    max-width: 1200px;
+    /* PCでの最大幅 */
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    /* ウィジェット間の隙間 */
+}
+
+/* --- 行のスタイル --- */
+.row {
+    display: flex;
+    gap: 16px;
+    /* ウィジェット間の隙間 */
+}
+
+/* --- ウィジェット共通のスタイル --- */
+.widget {
+    background-color: #2b5082;
+    /* ウィジェットの背景色 */
+    border-radius: 12px;
+    /* 角丸 */
+    padding: 24px;
+    color: #ffffff;
+    /* 文字色 */
+    box-sizing: border-box;
+    /* paddingを含めてサイズ計算 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- 上段のウィジェットの幅を調整 --- */
+.top-row .widget:nth-child(1) {
+    flex: 3;
+    /* 1番目の要素（時刻）の幅を広めに */
+}
+
+.top-row .widget:nth-child(2) {
+    flex: 2;
+    /* 2番目の要素（画像）の幅を狭めに */
+}
+
+/* --- 下段のウィジェットの幅を均等に --- */
+.bottom-row .widget {
+    flex: 1;
+    /* 均等な幅 */
+}
+
+/* --- 各ウィジェットの個別スタイル --- */
+
+/* 時刻ウィジェット */
+.time-widget .date {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.time-widget .day {
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 0;
+}
+
+.time-widget .time {
+    font-size: 13rem;
+    font-weight: bold;
+    margin: 10px 0;
+    line-height: 1;
+}
+
+/* 画像ウィジェット */
+.image-widget {
+    padding: 10px;
+    /* 画像の周りの余白 */
+    gap: 10px;
+}
+
+.image-widget img {
+    width: 100%;
+    height: 180px;
+    /* 高さを固定 */
+    border-radius: 8px;
+    /* 画像の角を丸める */
+    object-fit: cover;
+    /* アスペクト比を維持してトリミング */
+    flex: 1;
+}
+
+/* 天気ウィジェット */
+.weather-widget {
+    text-align: center;
+    justify-content: space-between;
+    /* ★変更点: 要素を上下に配置 */
+}
+
+.weather-widget .location {
+    font-size: 1.2rem;
+}
+
+.weather-widget .weather-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.weather-widget .weather-icon {
+    width: 4rem;
+    /* アイコンの幅 */
+    height: 4rem;
+    /* アイコンの高さ */
+}
+
+.weather-widget .temp {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.weather-widget .precipitation {
+    font-size: 1rem;
+    color: #c0c0c0;
+}
+
+/* 銀行ウィジェット */
+.bank-widget {
+    text-align: center;
+    justify-content: space-between;
+    /* ★変更点: 要素を上下に配置 */
+}
+
+.bank-widget .bank-name {
+    font-size: 1.2rem;
+}
+
+.bank-widget .balance {
+    font-size: 4rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.bank-widget .timestamp {
+    font-size: 1rem;
+    color: #c0c0c0;
+}
+
+/* 速度ウィジェット */
+.speed-widget {
+    text-align: center;
+}
+
+.speed-widget .gauge-icon img {
+    width: auto;
+    height: 4rem;
+}
+
+.speed-widget .speed-value {
+    font-size: 4rem;
+    font-weight: bold;
+    margin-top: -15px;
+    /* アイコンと数値を近づける */
+}
+
+.speed-widget .speed-unit {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: -5px;
+}
+
+.speed-widget .status-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* --- スマートフォン向けのレスポンシブ対応 --- */
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        /* 縦並びにする */
+    }
+
+    .image-widget img {
+        height: 120px;
+        /* スマホでは画像の高さを調整 */
+    }
+
+    .time-widget .date {
+        font-size: 1.8rem;
+    }
+
+    .time-widget .day {
+        font-size: 1.5rem;
+    }
+
+    .time-widget .time {
+        font-size: 5rem;
+    }
+
+    .weather-widget .weather-icon {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .weather-widget .temp {
+        font-size: 2rem;
+    }
+
+    .bank-widget .balance {
+        font-size: 2rem;
+    }
+
+    .speed-widget .speed-value {
+        font-size: 3rem;
+    }
+}
